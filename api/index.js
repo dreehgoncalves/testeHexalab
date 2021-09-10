@@ -102,7 +102,7 @@ servidor.delete("/quadro/:id", (req, res, next) => {
     banco.getConnection((error, conn) => {
         if (error) {
             return res.status(500).send({
-                messagem: "Erro no servidor"
+                Mensagem: "Erro no servidor"
             });
         }
         conn.query(QUERY, (error, resultado) => {
@@ -115,11 +115,11 @@ servidor.delete("/quadro/:id", (req, res, next) => {
             }
             if (resultado.affectedRows > 0) {
                 return res.status(200).send({
-                    mensagem: `Quadro ${id} excluído com sucesso`,
+                    Mensagem: `Quadro ${id} excluído com sucesso`,
                 });
             } else {
                 return res.status(200).send({
-                    mensagem: `Quadro ${id} não existe no banco de dados`,
+                    Mensagem: `Quadro ${id} não existe no banco de dados`,
                 });
             }
         });
@@ -133,7 +133,7 @@ servidor.delete("/tarefa/:id", (req, res, next) => {
     banco.getConnection((error, conn) => {
         if (error) {
             return res.status(500).send({
-                messagem: "Erro no servidor"
+                Mensagem: "Erro no servidor"
             });
         }
         conn.query(QUERY, (error, resultado) => {
@@ -141,16 +141,16 @@ servidor.delete("/tarefa/:id", (req, res, next) => {
 
             if (error) {
                 return res.status(500).send({
-                    mensagem: `Não foi possível excluir a Tarefa ${id}`,
+                    Mensagem: `Não foi possível excluir a Tarefa ${id}`,
                 });
             }
             if (resultado.affectedRows > 0) {
                 return res.status(200).send({
-                    mensagem: `Tarefa ${id} excluída com sucesso`,
+                    Mensagem: `Tarefa ${id} excluída com sucesso`,
                 });
             } else {
                 return res.status(200).send({
-                    mensagem: `Tarefa ${id} não existe no banco de dados`,
+                    Mensagem: `Tarefa ${id} não existe no banco de dados`,
                 });
             }
         });
@@ -164,7 +164,7 @@ servidor.delete("/subtarefa/:id", (req, res, next) => {
     banco.getConnection((error, conn) => {
         if (error) {
             return res.status(500).send({
-                messagem: "Erro no servidor"
+                Mensagem: "Erro no servidor"
             });
         }
         conn.query(QUERY, (error, resultado) => {
@@ -172,16 +172,16 @@ servidor.delete("/subtarefa/:id", (req, res, next) => {
 
             if (error) {
                 return res.status(500).send({
-                    mensagem: `Não foi possível excluir a Subtarefa ${id}`,
+                    Mensagem: `Não foi possível excluir a Subtarefa ${id}`,
                 });
             }
             if (resultado.affectedRows > 0) {
                 return res.status(200).send({
-                    mensagem: `Subtarefa ${id} excluída com sucesso`,
+                    Mensagem: `Subtarefa ${id} excluída com sucesso`,
                 });
             } else {
                 return res.status(200).send({
-                    mensagem: `Subtarefa ${id} não existe no banco de dados`,
+                    Mensagem: `Subtarefa ${id} não existe no banco de dados`,
                 });
             }
         });
@@ -589,7 +589,7 @@ servidor.get("/testarconexao", (req, res, next) => {
 
 servidor.get("/", (req, res, next) => {
     return res.send({
-        mensagem: "Bem-vindo(a) ao servidor"
+        Mensagem: "Bem-vindo(a) ao servidor"
     });
 });
 
