@@ -415,12 +415,44 @@ servidor.get("/subtarefa/listar/:idtarefa", (req, res, next) => {
     });
 });
 
+servidor.get("/subtarefa/listar/quadro/:idquadro", (req, res, next) => {
+    let idquadro = req.params.idquadro;
+    const QUERY = `SELECT q.nomeQuadro, t.nomeTarefa, t.statusTarefa, s.nomeSubtarefa, s.statusSubtarefa
+                   FROM  tarefa as t
+                   INNER JOIN subtarefa as s on s.tarefa_id = t.id
+                   INNER JOIN quadro as q on q.id = t.quadro_id
+                   WHERE q.id = ${idquadro}`;
+
+    banco.getConnection((error, conn) => {
+        if (error) {
+            return res.status(500).send({
+                Erro: "Não foi possível atender à solicitação"
+            });
+        }
+
+        conn.query(QUERY, (error, resultado) => {
+            conn.release();
+
+            if (error) {
+                return res.status(500).send({
+                    Erro: "Não foi possível atender à solicitação",
+                });
+            }
+
+            return res.status(200).send({
+                Mensagem: "Consulta realizada com sucesso",
+                Dados: resultado,
+            });
+        });
+    });
+});
+
 servidor.patch("/quadro/:id", (req, res, next) => {
     let id = req.params.id;
     let body = req.body;
     const QUERY = `UPDATE quadro
-                 SET nomeQuadro = '${body.nome}'
-                 WHERE id=${id}`;
+                   SET nomeQuadro = '${body.nome}'
+                   WHERE id=${id}`;
 
     banco.getConnection((error, conn) => {
         if (error) {
