@@ -21,7 +21,7 @@ servidor.post("/quadro", (req, res, next) => {
     banco.getConnection((error, conn) => {
         if (error) {
             return res.status(500).send({
-                Mensagem: "Erro no servidor"
+                Mensagem: "Erro no servidor."
             });
         }
 
